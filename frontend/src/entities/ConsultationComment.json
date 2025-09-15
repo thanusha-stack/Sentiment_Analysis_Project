@@ -1,0 +1,65 @@
+{
+  "name": "ConsultationComment",
+  "type": "object",
+  "properties": {
+    "consultation_title": {
+      "type": "string",
+      "description": "Title of the consultation/draft law"
+    },
+    "comment_text": {
+      "type": "string",
+      "description": "Original comment text from stakeholder"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "description": "AI-determined sentiment of the comment"
+    },
+    "sentiment_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence score of sentiment analysis"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Extracted keywords from the comment"
+    },
+    "stakeholder_name": {
+      "type": "string",
+      "description": "Name of the person/organization providing feedback"
+    },
+    "stakeholder_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "organization",
+        "business",
+        "ngo",
+        "other"
+      ],
+      "description": "Type of stakeholder"
+    },
+    "submission_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when comment was submitted"
+    },
+    "processed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the comment has been processed by AI"
+    }
+  },
+  "required": [
+    "consultation_title",
+    "comment_text"
+  ]
+}
