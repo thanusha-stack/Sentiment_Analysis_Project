@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom"; 
 import { createPageUrl } from "@/utils";
 import { 
   BarChart3, 
@@ -27,11 +27,6 @@ import {
 
 const navigationItems = [
   {
-    title: "Welcome",
-    url: createPageUrl("Welcome"),
-    icon: Home,
-  },
-  {
     title: "Dashboard",
     url: createPageUrl("Dashboard"),
     icon: BarChart3,
@@ -53,7 +48,7 @@ const navigationItems = [
   },
 ];
 
-export default function Layout({ children, currentPageName }) {
+export default function Layout() {
   const location = useLocation();
 
   return (
@@ -83,7 +78,9 @@ export default function Layout({ children, currentPageName }) {
         `}
       </style>
       <div className="min-h-screen flex w-full gradient-bg">
-        <Sidebar className="border-r border-gray-200 bg-white/95 backdrop-blur-sm">
+        
+        {/* Sidebar */}
+        <Sidebar className="w-64 border-r border-gray-200 bg-white/95 backdrop-blur-sm fixed h-full">
           <SidebarHeader className="border-b border-gray-200 p-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
@@ -140,7 +137,7 @@ export default function Layout({ children, currentPageName }) {
           </SidebarFooter>
         </Sidebar>
 
-        <main className="flex-1 flex flex-col overflow-hidden">
+        <main className="flex-1 flex flex-col overflow-hidden ml-64">
           <header className="bg-white/90 backdrop-blur-sm border-b border-gray-200 px-6 py-4 md:hidden">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="hover:bg-gray-100 p-2 rounded-lg transition-colors duration-200" />
@@ -148,8 +145,8 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </header>
 
-          <div className="flex-1 overflow-auto">
-            {children}
+          <div className="flex-1 overflow-auto p-6">
+            <Outlet />
           </div>
         </main>
       </div>

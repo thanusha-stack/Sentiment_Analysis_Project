@@ -86,7 +86,7 @@ export default function Dashboard() {
               Export Report
             </Button>
             <Link to={createPageUrl("Upload")}>
-              <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
+              <Button className="text-white bg-blue-600 hover:bg-blue-700 gap-2">
                 <Upload className="w-4 h-4" />
                 Upload Comments
               </Button>

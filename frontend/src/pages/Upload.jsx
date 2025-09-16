@@ -467,7 +467,7 @@ If no specific stakeholder information is available, use "Anonymous" and "indivi
             <Button
               onClick={handleUpload}
               disabled={processing || files.length === 0 || !consultationTitle.trim()}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6 gap-3"
+              className="w-full text-white bg-blue-600 hover:bg-blue-700 text-lg py-6 gap-3"
             >
               {processing ? (
                 <>
