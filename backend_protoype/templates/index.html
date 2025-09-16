@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Upload CSV - Sentiment Pipeline</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Inter, Arial, sans-serif; background:#f4f6f8; color:#222; padding:30px; }
+    .card { max-width:760px; margin:0 auto; background:#fff; border-radius:8px; padding:20px; box-shadow:0 6px 30px rgba(0,0,0,0.06); }
+    h1 { margin-top:0; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    input[type=file] { padding:6px; }
+    button { padding:10px 14px; background:#2563eb; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    .note { color:#666; font-size:0.9rem; margin-top:12px; }
+    .flash { color:#b00020; margin-top:12px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Upload CSV (raw comments)</h1>
+    <p>Choose a CSV file. The backend will run preprocessing (first.py) and generate visualizations (second.py).</p>
+
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+      <label for="file">Choose CSV file (required):</label>
+      <div class="row" style="margin-top:8px;">
+        <input id="file" name="file" type="file" accept=".csv" required>
+        <button type="submit">Upload & Process</button>
+      </div>
+    </form>
+
+    <div id="status" class="note">Make sure the Flask server is running at <code>http://127.0.0.1:5000</code></div>
+    <div id="flash" class="flash"></div>
+  </div>
+
+  <script>
+    // Optional: show a simple client-side spinner/message and disable button while processing
+    const form = document.getElementById('uploadForm');
+    const status = document.getElementById('status');
+    const flash = document.getElementById('flash');
+
+    form.addEventListener('submit', (e) => {
+      // Basic client-side checks
+      const input = document.getElementById('file');
+      if (!input.files || input.files.length === 0) {
+        e.preventDefault();
+        flash.textContent = "Please select a CSV file before uploading.";
+        return;
+      }
+      flash.textContent = "";
+      status.textContent = "Uploading and processing... (this may take a while for large files)";
+    });
+  </script>
+</body>
+</html>
